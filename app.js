@@ -8,10 +8,12 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var addItem = require('./routes/addItem');
+var display = require('./routes/display');
 
 
-var simpledb = require('mongoose-simpledb');
-var db = simpledb.init();
+
+
+var db = require('database').db;
 
 var app = express();
 
@@ -28,31 +30,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 app.use('/addItem', addItem);
+app.use('/display', display);
 
 app.post('/add', function (req, res) {
     console.log("add reached");
     console.log(req.body.name);
 
     var newItem = new db.Item({
-	
 	name: req.body.name,
 	info: req.body.info,
 	link: req.body.link
-	
-
     });
     newItem.save(function () {
 	res.send("saved");
     });
-
-
-
-
-        //koda.name.first = req.param('firstName');
-        //koda.name.last = req.param('lastName');
-        //koda.age = parseInt(req.param('age'));
-        //koda.save();
-        //res.send("added");
 });
 
 /// catch 404 and forward to error handler
@@ -85,6 +76,8 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
+
+
 
 //adding items
 
