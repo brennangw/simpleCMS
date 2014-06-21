@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    h1= title
+
+    form(action="../add", method="POST")
+        label(for="name") Name:
+        input(name = "name", type="text")
+        br
+        label(for="link") Link:
+        input(name = "link", type="text")
+        br
+        label(for="info") Info:
+        input(name = "info", type="text")
+        br
+        input(type="submit", value="Submit")
