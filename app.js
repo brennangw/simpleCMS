@@ -9,6 +9,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var addItem = require('./routes/addItem');
 var display = require('./routes/display');
+var item = require('./routes/item');
 
 
 
@@ -27,10 +28,17 @@ app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+
 app.use('/', routes);
 app.use('/users', users);
 app.use('/addItem', addItem);
 app.use('/display', display);
+app.use('/item*', item);
+
+app.get('/user/:name', function(req, res){
+  res.send('hello ' + req.params.name + ', id=' + req.query.id);
+});
 
 app.post('/add', function (req, res) {
     console.log("add reached");
