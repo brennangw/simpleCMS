@@ -3,8 +3,12 @@ var router = express.Router();
 var db = require('database').db;
 
 /* GET users listing. */
-router.get('/', function(req, res) {
-  res.send(req.params.name);
+router.get('/:name', function(req, res) {
+    db.Item.findOne({ name : req.params.name}, function (err, item) {
+	if (err) return console.error(err);
+	if (!item) return res.send("no item found with that name");
+	res.render('item', {name: item.name, info: item.info, link: item.link});
+    });
 });
 
 module.exports = router;

@@ -34,11 +34,7 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/addItem', addItem);
 app.use('/display', display);
-app.use('/item*', item);
-
-app.get('/user/:name', function(req, res){
-  res.send('hello ' + req.params.name + ', id=' + req.query.id);
-});
+app.use('/item', item);
 
 app.post('/add', function (req, res) {
     console.log("add reached");
