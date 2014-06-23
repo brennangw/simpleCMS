@@ -1,7 +1,8 @@
 exports.schema = {
     name: String,
+    blurb: String,
     info: String,
-    picLinks: [{ mainPic : String, secondPic: String, thridPic: String}],
+    picLinks: [""],
+    cats: [""],
     link: String
- 
 }
