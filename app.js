@@ -36,14 +36,15 @@ app.use('/display', display);
 app.use('/item', item);
 
 app.post('/add', function (req, res) {
-    console.log("add reached");
-    console.log(req.body.name);
+
+    console.log(req.body.picLink1);
 
     var newItem = new db.Item({
 	name: req.body.name,
 	info: req.body.info,
 	link: req.body.link,
-	picLinks[0]: push(req.body.picLink1)
+	picLinks: [req.body.picLink1, req.body.picLink2, req.body.picLink3],
+	cats: [req.body.cat1, req.body.cat2, req.body.cat3, req.body.cat4, req.body.cat5]
     });
     newItem.save(function () {
 	res.send("saved");
