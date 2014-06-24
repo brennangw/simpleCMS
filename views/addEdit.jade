@@ -1,0 +1,41 @@
+extends layout
+
+block content
+    h1= title
+
+    form(action="../add", method="POST")
+        label(for="name") Name:
+        input(type="hidden", name="_id", value=id)
+        input(name = "name", type="text", value= nameV)
+        br
+        label(for="info") info:
+        textarea(name = "info", type="text") #{infoV}
+        br
+        label(for="type") type:
+        input(name = "type", type="text", value= typeV)
+        br
+        label(for="picLink1") Picture Link 1:
+        input(name = "picLink1", type="text", value= picLink1V)
+        br
+        label(for="picLink2") Picture Link 2:
+        input(name = "picLink2", type="text", value= picLink2V)
+        br
+        label(for="picLink3") Picture Link 3:
+        input(name = "picLink3", type="text", value= picLink3V)
+        br
+        label(for="cat1") cat 1:
+        input(name = "cat1", type="text", value= cat1V)
+        br
+        label(for="cat2") cat 2:
+        input(name = "cat2", type="text", value= cat2V)
+        br
+        label(for="cat3") cat 3:
+        input(name = "cat3", type="text", value= cat3V)
+        br
+        label(for="cat4") cat 4:
+        input(name = "cat4", type="text", value= cat4V)
+        br
+        label(for="link") Link:
+        input(name = "link", type="text", value= linkV)
+        br
+        input(type="submit", value="Submit")

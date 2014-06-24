@@ -2,7 +2,7 @@ exports.schema = {
     name: String,
     blurb: String,
     info: String,
-    type: Sting,
+    type: String,
     picLinks: [],
     cats: [],
     link: String

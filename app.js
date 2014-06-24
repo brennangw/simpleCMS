@@ -7,8 +7,7 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var addItem = require('./routes/addItem');
-var display = require('./routes/display');
+var addEdit = require('./routes/addEdit');
 var item = require('./routes/item');
 
 
@@ -31,24 +30,42 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
-app.use('/addItem', addItem);
-app.use('/display', display);
+app.use('/addEdit', addEdit);
 app.use('/item', item);
 
 app.post('/add', function (req, res) {
 
-    console.log(req.body.picLink1);
-
-    var newItem = new db.Item({
-	name: req.body.name,
-	info: req.body.info,
-	link: req.body.link,
-	picLinks: [req.body.picLink1, req.body.picLink2, req.body.picLink3],
-	cats: [req.body.cat1, req.body.cat2, req.body.cat3, req.body.cat4, req.body.cat5]
-    });
-    newItem.save(function () {
-	res.send("saved");
-    });
+    if (String(req.body._id) === ""){
+	    console.log("if");
+	var newItem = new db.Item({
+	    name: req.body.name,
+	    info: req.body.info,
+	    type: req.body.type,
+	    link: req.body.link,
+	    picLinks: [req.body.picLink1, req.body.picLink2, req.body.picLink3],
+	    cats: [req.body.cat1, req.body.cat2, req.body.cat3, req.body.cat4]
+	});
+	newItem.save(function () {
+	    res.send("saved");
+	});
+    } else {
+	console.log("else: " + req.body.name);
+	db.Item.findOne({ name : req.body.name}, function (err, item) {
+	    if (err) return console.error(err);
+	    if (!item) return res.send("could not find item");
+	    console.log("item found");
+	    item.name = req.body.name;
+	    item.info = req.body.info;
+	    item.type = req.body.type;
+	    item.link = req.body.link;
+	    item.picLinks = [req.body.picLink1, req.body.picLink2, req.body.picLink3];
+	    item.cats = [req.body.cat1, req.body.cat2, req.body.cat3, req.body.cat4]
+	    item.save(function () {
+		res.send("saved");
+	    });
+	    
+	});
+    }
 });
 
 /// catch 404 and forward to error handler
