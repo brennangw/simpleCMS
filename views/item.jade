@@ -1,6 +1,10 @@
-extends layout
-
-block content
-  h1 #{name}
-  p #{info}
-  a(href=link) #{link}
+pageTitle= title
+doctype html
+html(lang="en")
+	head
+		title= name
+	body
+		h1= name
+		img(src= picLink1)
+		p!= info
+		a(href= link)= link

@@ -15,7 +15,6 @@ var item = require('./routes/item');
 
 
 var db = require('database').db;
-
 var app = express();
 
 // view engine setup
@@ -43,7 +42,8 @@ app.post('/add', function (req, res) {
     var newItem = new db.Item({
 	name: req.body.name,
 	info: req.body.info,
-	link: req.body.link
+	link: req.body.link,
+	picLinks[0]: push(req.body.picLink1)
     });
     newItem.save(function () {
 	res.send("saved");
