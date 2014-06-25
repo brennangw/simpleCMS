@@ -32,7 +32,7 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/addEdit', addEdit);
 app.use('/item', item);
-app.use('/cat', cats);
+app.use('/cat', cat);
 
 app.post('/add', function (req, res) {
 

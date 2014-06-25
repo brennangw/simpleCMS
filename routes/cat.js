@@ -4,9 +4,9 @@ var db = require('database').db;
 
 /* GET users listing. */
 router.get('/:cat', function(req, res) {
-
-    var cursor = db.items.find({ cats: { $elemMatch: req.params.cat}});
-    
+    console.log(typeof req.params.cat);
+    var cursor = db.Item.find({ cats: { $elemMatch: req.params.cat}});
+    cursor.map( function(myDoc) {console.log("myDoc.name: " + myDoc.name)});
 
 });
 
