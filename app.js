@@ -9,7 +9,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var addEdit = require('./routes/addEdit');
 var item = require('./routes/item');
-
+var cat = require('./routes/cat');
 
 
 
@@ -32,6 +32,7 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/addEdit', addEdit);
 app.use('/item', item);
+app.use('/cat', cats);
 
 app.post('/add', function (req, res) {
 
