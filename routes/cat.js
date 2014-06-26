@@ -8,9 +8,16 @@ var db = require('database').db;
 //this still isnt working have a question on SO about it though.
 
 router.get('/:cat', function(req, res) {
-    db.Item.find({"cats": {"$in": req.params.cat}}, function (err, cats) {
+    db.Item.find({"cats": {"$in": [req.params.cat]}}, function (err, cats) {
         if (err) return console.error(err);
-        console.log(JSON.stringify(cats, undefiend, 4));
+        cats.map(function (item) {
+            console.log(item.name)
+        })
+        var cat = req.params.cat;
+        res.render('cat', {cats: cats, cat: cat, path: '../../item/'});
+
+        //console.log(JSON.stringify(cats));
+
     });
 
 });

@@ -1,0 +1,14 @@
+//
+   Created by Brennan on 6/26/14.
+doctype html
+html(lang="en")
+    head
+        title= cat
+    body
+        h1 Catagory View: #{cat}
+        each item in cats
+            script(type='text/javascript').
+                var link = "../../item/" + item.name
+            div
+            p #{item.name} :  !{item.info.substr(0,200)}
+            a(alt='full entry' href= (path + item.name)) more
